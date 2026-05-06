@@ -1,0 +1,15 @@
+.git
+.gitignore
+.github
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+*.db
+smoke_test_local_mysql.py
+full_functional_check.py
+rootkey.csv
+laporlur.pem
+instance/
