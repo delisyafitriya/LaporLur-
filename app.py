@@ -70,3 +70,6 @@ def submit_report():
 if __name__ == "__main__":
     # Host 0.0.0.0 wajib agar bisa diakses dari dalam Docker Container di ECS
     app.run(host="0.0.0.0", port=5000)
+    
+    
+    

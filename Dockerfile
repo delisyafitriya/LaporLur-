@@ -23,3 +23,6 @@ USER appuser
 EXPOSE 5000
 
 CMD ["sh", "-c", "gunicorn -w ${GUNICORN_WORKERS} --threads ${GUNICORN_THREADS} --timeout ${GUNICORN_TIMEOUT} -b 0.0.0.0:${PORT} app:app"]
+
+
+

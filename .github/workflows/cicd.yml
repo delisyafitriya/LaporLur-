@@ -40,3 +40,6 @@ jobs:
             --service laporlur-service \
             --force-new-deployment \
             --region ap-southeast-2
+
+
+            
