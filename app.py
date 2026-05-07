@@ -9,7 +9,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Gunakan secret key dari .env untuk keamanan
-app.secret_key = os.getenv("SECRET_KEY", "laporlur-secret-key-2026")
+app.secret_key = os.getenv("SECRET_KEY", "laporlur_delisya_2026")
 
 # 1. Konfigurasi Database RDS (Pastikan DATABASE_URL sudah benar di .env)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")

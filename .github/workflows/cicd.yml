@@ -18,7 +18,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ap-southeast-2  # Langsung kunci ke Sydney
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -28,7 +28,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: laporlur-repo #
+          ECR_REPOSITORY: laporlur  # Sesuai URI ECR kamu tadi
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -39,7 +39,8 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition.json 
+          # Pastikan path folder ini sesuai di laptop kamu (.aws/)
+          task-definition: .aws/task-definition.json 
           container-name: laporlur-container
           image: ${{ steps.build-image.outputs.image }}
 
@@ -47,6 +48,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: laporlur-service # Nama service di ECS Cluster kamu
-          cluster: laporlur-cluster # Nama cluster ECS kamu
+          service: laporlur-service  # Nama service kamu
+          cluster: laporlur-cluster  # Nama cluster kamu
           wait-for-service-stability: true
